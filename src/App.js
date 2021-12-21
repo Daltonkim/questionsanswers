@@ -1,23 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import './assets/main.scss';
+import Home from './modules/home';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <div className='app__column'>
+        <p>Here you can find 1 question. Feel free to create your own questions!</p>
+      </div>
+      <div className='app__column'>
+        <h1>Question and Answer tool</h1>
+        <Home></Home>
+      </div>
     </div>
   );
 }
