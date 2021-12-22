@@ -2,6 +2,7 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import './assets/main.scss';
 import Home from './modules/home';
+import { ModalRoot } from './modules/modals';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <div className='app__column'>
           <h1>Question and Answer tool</h1>
           <Home/>
+          <ModalRoot />
         </div>
       </div>
     </Provider>
