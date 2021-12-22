@@ -22,6 +22,30 @@ export const questions = (state = initialState, action) => {
                 ...state,
                 loading: false,
             }
+        case questionairesConstants.QUESTION_EDIT_REQUEST:
+            return {
+                ...state,
+                loading: true,
+            }
+        case questionairesConstants.QUESTION_EDIT_SUCCESS:
+            const updatePayload = state.questions.map(item => {
+                if (action.data.uid === item.uid) {
+                    item.question = action.data.question;
+                    item.answer = action.data.answer;
+                }
+                return item
+            })
+            return {
+                ...state,
+                loading: false,
+                questions: updatePayload
+
+            }
+        case questionairesConstants.QUESTION_EDIT_FAILURE:
+            return {
+                ...state,
+                loading: false,
+            }
         case questionairesConstants.QUESTION_GETALL_REQUEST:
             return {
                 ...state,

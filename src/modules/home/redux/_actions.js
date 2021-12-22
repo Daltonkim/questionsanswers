@@ -4,6 +4,7 @@ import { questionairesService } from './_service';
 
 export const questionaireActions = {
     addQuestion,
+    editQuestion,
     getAllQuestions,
     deleteQuestion,
     deleteAllQuestions,
@@ -41,6 +42,37 @@ function addQuestion(question) {
     function request(data) { return { type: questionairesConstants.QUESTION_SUBMIT_REQUEST, data }; }
     function success(data) { return { type: questionairesConstants.QUESTION_SUBMIT_SUCCESS, data }; }
     function failure(error) { return { type: questionairesConstants.QUESTION_SUBMIT_FAILURE, error }; }
+}
+
+function editQuestion(question) {
+    console.log(question)
+    return (dispatch) => {
+        dispatch(request({}));
+
+        try {
+            if (isEmpty(question)) {
+                throw new Error('Question cannot be empty');
+            }
+
+            questionairesService.addQuestion(question)
+                .then(
+                    (data) => {
+                        console.log(question)
+                        console.log(data)
+                        dispatch(success(question));
+                    },
+                    (error) => {
+                        dispatch(failure(error));
+                    },
+                );
+        } catch (error) {
+            dispatch(failure(error));
+        }
+    };
+
+    function request(data) { return { type: questionairesConstants.QUESTION_EDIT_REQUEST, data }; }
+    function success(data) { return { type: questionairesConstants.QUESTION_EDIT_SUCCESS, data }; }
+    function failure(error) { return { type: questionairesConstants.QUESTION_EDIT_FAILURE, error }; }
 }
 
 function getAllQuestions(questions) {

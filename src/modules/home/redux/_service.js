@@ -37,7 +37,16 @@ function getAllQuestions(questions) {
 }
 
 function editQuestion(question, i) {
-    return question;
+    return new Promise((resolve, reject) => {
+        setTimeout(function () {
+            if (question) {
+                resolve();
+                return question;
+            } else {
+                reject(new Error("Invalid"));
+            }
+        }, delay);
+    });
 }
 
 function deleteQuestion(id) {
