@@ -1,0 +1,11 @@
+.site-modal {
+    width: 750px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 30px 50px 0 rgba(119, 151, 178, 0.2);
+
+    .w-full {
+      overflow-y: scroll;
+      max-height: 600px;
+    }
+}
