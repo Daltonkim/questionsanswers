@@ -4,6 +4,8 @@ import QuizHolder from "../../components/quizholder";
 import { questionaireActions } from "./redux/_actions";
 import { v4 as uuidv4 } from 'uuid';
 import { LoadingView } from "../../components/loader/Loading";
+import { QuestionDeleteAllButton } from "../modals/createdModals/questionDeleteAllButton";
+import { AddButton } from "../modals/createdModals/addButton";
 
 function desc(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -39,7 +41,7 @@ const Home = () => {
     {
         question: 'How to add a question',
         answer: 'By following the below',
-        uid: uuidv4()
+        uid: uuidv4() //unique identity
     }
     const [question, setQuestion] = useState()
     const [answer, setAnswer] = useState()
@@ -62,17 +64,7 @@ const Home = () => {
         setOrderBy(property);
     };
 
-
-    //disable submit button
-    useEffect(() => {
-        console.log(question, answer)
-        if ((answer !== undefined) && (question !== undefined)) {
-            setDisabled(false)
-        } else {
-            setDisabled(true)
-        }
-    }, [question, answer])
-
+  
     useEffect(() => {
         dispatch(questionaireActions.getAllQuestions(intialQuestion));
     }, [])
@@ -93,13 +85,6 @@ const Home = () => {
         }
     }
 
-    //remove questions
-    const removeQuestions = () => {
-        if (questions.length > 0) {
-            dispatch(questionaireActions.deleteAllQuestions(questions));
-        }
-    }
-
     return (
         <div className="app__question">
             {loading && <LoadingView/>}
@@ -111,15 +96,9 @@ const Home = () => {
                 })
             }
             <div className="app__question-actions">
-                <span><button onClick={createSortHandler("question")} className="app__question-actions-sort">Sort questions</button></span><span><button onClick={() => removeQuestions()} className="app__question-actions-remove">Remove questions</button></span>
+                <span><button onClick={createSortHandler("question")} className="app__question-actions-sort">Sort questions</button></span><span><QuestionDeleteAllButton questions={questions}/></span>
             </div>
-            <div className="app__question-create">
-                <label htmlFor="question">Question</label>
-                <input required value={question} className="app__question-qtext" onChange={(e) => setQuestion(e.target.value)} type="text" name="question"></input>
-                <label htmlFor="answer">Answer</label>
-                <textarea required value={answer} name="answer" rows="10" onChange={(e) => setAnswer(e.target.value)} className="app__question-qtextarea"></textarea>
-                <button type="submit" disabled={isDisabled} onClick={() => addQuestion()} className="app__question-actions-create">Add question</button>
-            </div>
+            <AddButton/>
         </div>
     )
 }
