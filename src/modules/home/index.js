@@ -5,6 +5,9 @@ import { questionaireActions } from "./redux/_actions";
 import { v4 as uuidv4 } from 'uuid';
 import { LoadingView } from "../../components/loader/Loading";
 import PerfectScrollbar from "react-perfect-scrollbar";
+import { QuestionDeleteAllButton } from '../../modules/modals/createdModals/questionDeleteAllButton';
+import sort from '../../assets/images/sort.svg'
+import Tooltip from "../../components/tooltip";
 
 function desc(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -69,7 +72,6 @@ const Home = () => {
 
     // sort questions
     const createSortHandler = property => event => {
-        console.log(property)
         handleRequestSort(event, property);
     };
 
@@ -87,17 +89,25 @@ const Home = () => {
 
     return (
         <>
-                            {loading && <LoadingView />}
+            {loading && <LoadingView />}
 
             <PerfectScrollbar
                 options={perfectScrollbarOptions}
                 className="navi navi-hover scroll"
                 style={{ maxHeight: "95vh", height: '90vh', position: "relative", padding: '0' }}
             >
+                <div className="app__question-actions-center">
+                    <button onClick={createSortHandler("question")} className="app__question-actions-sort">
+                        <img src={sort} style={{ width: '30px' }} alt="sort"></img>
+                    </button>
+                    <QuestionDeleteAllButton />
+                </div>
                 <div className="app__question">
 
                     {questions.length === 0 &&
-                        <p style={{position: 'absolute', left: '50%', fontSize:'32px', top:'50%'}}>No Questions Available</p>
+                        <p style={{ position: 'absolute', fontSize: '32px', top: '100%' }}>No Questions Available
+                          <Tooltip tip="Add questions on your own"/>
+                        </p>
                     }
                     {
                         stableSort(questions, getSorting(order, orderBy)).map((item, i) => {

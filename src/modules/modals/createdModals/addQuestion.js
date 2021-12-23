@@ -13,7 +13,6 @@ export const AddQuestion = ({ modalID, data }) => {
     const dispatch = useDispatch();
     //disable submit button
     useEffect(() => {
-        console.log(question, answer)
         if ((answer !== undefined) && (question !== undefined)) {
             setDisabled(false)
         } else {
@@ -24,7 +23,6 @@ export const AddQuestion = ({ modalID, data }) => {
     //add questions
     const addQuestion = () => {
         if ((answer !== undefined) && (question !== undefined)) {
-            console.log(answer, question)
             const obj = {
                 question: question,
                 answer: answer,

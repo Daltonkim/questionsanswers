@@ -13,7 +13,6 @@ export const EditQuestion = ({ modalID, data }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log(question, answer)
         if ((answer !== undefined) && (question !== undefined)) {
             setDisabled(false)
         } else {
@@ -23,7 +22,6 @@ export const EditQuestion = ({ modalID, data }) => {
 
     const editQuestion = () => {
         if ((answer !== undefined) && (question !== undefined)) {
-            console.log(answer, question)
             const obj = {
                 question: question,
                 answer: answer,

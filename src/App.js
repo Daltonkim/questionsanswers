@@ -6,8 +6,7 @@ import { ModalRoot } from './modules/modals';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import Header from './components/header';
 import { AddButton } from './modules/modals/createdModals/addButton';
-import { QuestionDeleteAllButton } from './modules/modals/createdModals/questionDeleteAllButton';
-import learnonline from './assets/images/learn-online.gif'
+import Tooltip from './components/tooltip';
 
 function App() {
 
@@ -20,10 +19,10 @@ function App() {
           <Home />
         </div>
         <div className='app__column'>
-          <div className='app__column-image'>
-            <img style={{ width: '90%' }} src={learnonline} alt=''></img>
-            <QuestionDeleteAllButton />
-          </div>
+          <p>Here you can find a few questions. Feel free to create your own questions!
+
+            <Tooltip tip="Add more questions"/>
+          </p>
           <AddButton />
         </div>
       </div>

@@ -9,7 +9,6 @@ export const questionairesService = {
 const delay = (0.5 + Math.random() * 2) * 1000;
 
 function addQuestion(question) {
-    console.log(question)
     return new Promise((resolve, reject) => {
         setTimeout(function () {
             if (question) {
@@ -23,7 +22,6 @@ function addQuestion(question) {
 }
 
 function getAllQuestions(questions) {
-    console.log(questions)
     return new Promise((resolve, reject) => {
         setTimeout(function () {
             if (questions) {
