@@ -20,7 +20,7 @@ console.log(data)
 
     return (
         <div className="site-modal">
-            <h1>Delete Item</h1>
+            <h2>Delete Question</h2>
             <div className="select-file p-10">
 
                 <div className="btn-group-actions site-modal__actions">

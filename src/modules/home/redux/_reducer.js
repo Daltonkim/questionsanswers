@@ -56,7 +56,7 @@ export const questions = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                questions: [...state.questions, action.data]
+                questions: action.data
             }
         case questionairesConstants.QUESTION_GETALL_FAILURE:
             return {

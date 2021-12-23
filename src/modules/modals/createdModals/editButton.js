@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { modalActions } from '..';
+import edit from '../../../assets/images/edit.png'
 
 export function EditButton({ item }) {
     const dispatch = useDispatch();
@@ -9,8 +10,8 @@ export function EditButton({ item }) {
     };
 
     return (
-        <button theme="primary" onClick={() => editQuestion()}>
-            Edit
+        <button className='app__editbutton' onClick={() => editQuestion()}>
+           <img src={edit} alt="add new question"></img>
         </button>
     );
 }

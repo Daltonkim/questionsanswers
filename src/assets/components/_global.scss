@@ -1,0 +1,304 @@
+.app {
+    display: flex;
+    overflow: hidden;
+    height: 100vh;
+    @media (max-width: 1023px) {
+        display: block;
+        overflow:auto;
+        height: 100%;
+    }
+    &__column {
+        
+        >img {
+            @media (max-width: 1023px) {
+               display: none;
+            }
+        }
+        &:first-child {
+            width: 90%;
+            border-right: 1px solid #000;
+
+            @media (max-width: 1023px) {
+                width: 100%;
+            }
+        }
+
+        &:nth-child(2) {
+            width: 10%;
+            height: 100vh;
+            position: relative;
+            padding: 0 20px;
+
+            @media (max-width: 1023px) {
+                width: 90%;
+                height: 30px;
+                padding: 31px 21px;
+                display: flex;
+                justify-content: space-between;
+                position: fixed;
+                z-index: 2;
+                bottom: 0;
+                background: #fff;            
+
+            }
+        }
+    }
+
+    &__addbutton {
+        background: none;
+        border: none;
+        position: absolute;
+        bottom: 30px;
+        align-items: end;
+        left: 37%;
+
+        >img {
+            width: 70px;
+            cursor: pointer;
+            @media (max-width: 1023px) {
+                width: 40px;
+            }
+        }
+        @media (max-width: 1023px) {
+            right: unset;
+            left: unset;
+            bottom: unset;
+            position: relative;
+        }
+    }
+
+    &__editbutton {
+        background: none;
+        border: none;
+        position: relative;
+        align-items: end;
+
+        >img {
+            width: 20px;
+            cursor: pointer;
+        }
+    }
+
+    &__deletebutton {
+        background: none;
+        border: none;
+        position: relative;
+        align-items: end;
+
+        >img {
+            width: 20px;
+            cursor: pointer;
+        }
+    }
+
+    &__question {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 50px;
+
+        @media (max-width: 1023px) {
+            display: block;
+            padding: 50px 50px 182px;
+        }
+
+        &-wrapper {
+            padding: 10px;
+            background: rgba(128, 128, 128, 0.226);
+            border-radius: 10px;
+            margin: 25px;
+        }
+
+        &-inlineactions {
+            background: #fff;
+            position: absolute;
+            top: 0;
+            right: -1px;
+            padding: 5px;
+            display: flex;
+            width: 12%;
+            justify-content: space-around;
+            border-top-right-radius: 30px;
+            border-top: 1px solid #800000;
+            border-right: 1px solid #800000;
+            border-bottom-left-radius: 30px;
+    }
+
+    &-create {
+        padding: 100px 100px 100px 0;
+    }
+
+
+
+    &-text {
+        font-size: 20px;
+        font-weight: 700;
+
+    }
+
+    &-answer {
+        font-style: italic;
+    }
+
+    &-actions {
+        padding: 20px 0;
+
+        &-sort {
+            padding: 10px 10px;
+            box-shadow: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 0 10px;
+            border: none;
+            background: rgb(43, 189, 226);
+
+            &:hover {
+                scale: 2;
+            }
+        }
+
+        &-remove {
+            padding: 10px 10px;
+            box-shadow: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 0 10px;
+            color: #fff;
+            border: none;
+            background: rgb(226, 43, 67);
+
+            &:hover {
+                scale: 2;
+            }
+        }
+
+        &-create {
+            padding: 10px 10px;
+            box-shadow: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px 0;
+            color: #fff;
+            border: none;
+            background: rgb(3, 129, 20);
+
+            &:hover {
+                scale: 2;
+            }
+        }
+    }
+
+    &-qtext {
+        width: 90%;
+        border-radius: 10px;
+        margin: 10px 0;
+        padding: 10px 10px;
+        border: 1px solid #800;
+    }
+
+    &-qtextarea {
+        width: 90%;
+        border-radius: 10px;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #800;
+    }
+}
+}
+
+// base
+.flip {
+    position: relative;
+    box-shadow: 0 30px 50px 0 rgb(119 151 178 / 20%);
+    >.front,
+    >.back {
+        display: block;
+        transition-timing-function: cubic-bezier(.175, .885, .32, 1.275);
+        transition-duration: 2s;
+        transition-property: transform, opacity;
+        box-shadow: 0 30px 50px 0 rgb(119 151 178 / 20%);
+        cursor: pointer;
+    }
+
+    >.front {
+        transform: rotateY(0deg);
+    }
+
+    >.back {
+        position: absolute;
+        opacity: 0;
+        top: 0px;
+        left: 0px;
+        width: 84%;
+        transform: rotateY(-180deg);
+        @media (max-width: 1023px) {
+            width: 75%;
+        }
+    }
+
+    &:hover {
+        >.front {
+            transform: rotateY(180deg);
+        }
+
+        >.back {
+            opacity: 1;
+            transform: rotateY(0deg);
+        }
+    }
+
+    &.flip-vertical {
+        >.back {
+            transform: rotateX(-180deg);
+        }
+
+        &:hover {
+            >.front {
+                transform: rotateX(180deg);
+            }
+
+            >.back {
+                transform: rotateX(0deg);
+            }
+        }
+    }
+}
+
+// custom
+.flip {
+    position: relative;
+    margin-right: 2px;
+    margin-bottom: 1em;
+    border-radius: 30px;
+    width: 31%;
+
+    @media (max-width: 1023px) {
+        width: 100%;
+    }
+
+    cursor: pointer;
+
+    >.front,
+    >.back {
+        display: block;
+        color: white;
+        background-size: cover !important;
+        background-position: center !important;
+        padding: 10px 40px 70px;
+        background: #262d2d;
+        height: 200px;
+        border-radius: 30px;
+
+        p {
+            font-size: 16px;
+            line-height: 160%;
+            color: #fff;
+        }
+    }
+
+    >.front {
+        background: #800000;
+        border-radius: 30px;
+    }
+}
