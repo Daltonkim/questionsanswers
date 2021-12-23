@@ -4,8 +4,10 @@ import QuizHolder from "../../components/quizholder";
 import { questionaireActions } from "./redux/_actions";
 import { v4 as uuidv4 } from 'uuid';
 import { LoadingView } from "../../components/loader/Loading";
-import { QuestionDeleteAllButton } from "../modals/createdModals/questionDeleteAllButton";
-import { AddButton } from "../modals/createdModals/addButton";
+import PerfectScrollbar from "react-perfect-scrollbar";
+import { QuestionDeleteAllButton } from '../../modules/modals/createdModals/questionDeleteAllButton';
+import sort from '../../assets/images/sort.svg'
+import Tooltip from "../../components/tooltip";
 
 function desc(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -33,19 +35,36 @@ function getSorting(order, orderBy) {
         : (a, b) => -desc(a, b, orderBy);
 }
 
+const perfectScrollbarOptions = {
+    wheelSpeed: 2,
+    wheelPropagation: false,
+};
 
 const Home = () => {
 
     //initial questions
-    const intialQuestion =
-    {
-        question: 'How to add a question',
-        answer: 'By following the below',
-        uid: uuidv4() //unique identity
-    }
-    const [question, setQuestion] = useState()
-    const [answer, setAnswer] = useState()
-    const [isDisabled, setDisabled] = useState(true)
+    const intialQuestion = [
+        {
+            question: 'How to add a question',
+            answer: 'By following the below',
+            uid: uuidv4() //unique identity
+        },
+        {
+            question: 'How to add a question',
+            answer: 'By following the below',
+            uid: uuidv4() //unique identity
+        },
+        {
+            question: 'How to add a question',
+            answer: 'By following the below',
+            uid: uuidv4() //unique identity
+        },
+        {
+            question: 'How to add a question',
+            answer: 'By following the below',
+            uid: uuidv4() //unique identity
+        }
+    ]
     const [order, setOrder] = useState("");
     const [orderBy, setOrderBy] = useState("");
     const dispatch = useDispatch()
@@ -53,7 +72,6 @@ const Home = () => {
 
     // sort questions
     const createSortHandler = property => event => {
-        console.log(property)
         handleRequestSort(event, property);
     };
 
@@ -64,42 +82,43 @@ const Home = () => {
         setOrderBy(property);
     };
 
-  
+
     useEffect(() => {
         dispatch(questionaireActions.getAllQuestions(intialQuestion));
     }, [])
 
-    //add questions
-    const addQuestion = () => {
-        if ((answer !== undefined) && (question !== undefined)) {
-            console.log(answer, question)
-            const obj = {
-                question: question,
-                answer: answer,
-                uid: uuidv4()
-            }
-            dispatch(questionaireActions.addQuestion(obj));
-
-            setAnswer('')
-            setQuestion('')
-        }
-    }
-
     return (
-        <div className="app__question">
-            {loading && <LoadingView/>}
-            {
-                stableSort(questions, getSorting(order, orderBy)).map((item, i) => {
-                    return (
-                        <QuizHolder key={i} id={item.uid} item={item} />
-                    )
-                })
-            }
-            <div className="app__question-actions">
-                <span><button onClick={createSortHandler("question")} className="app__question-actions-sort">Sort questions</button></span><span><QuestionDeleteAllButton questions={questions}/></span>
-            </div>
-            <AddButton/>
-        </div>
+        <>
+            {loading && <LoadingView />}
+
+            <PerfectScrollbar
+                options={perfectScrollbarOptions}
+                className="navi navi-hover scroll"
+                style={{ maxHeight: "95vh", height: '90vh', position: "relative", padding: '0' }}
+            >
+                <div className="app__question-actions-center">
+                    <button onClick={createSortHandler("question")} className="app__question-actions-sort">
+                        <img src={sort} style={{ width: '30px' }} alt="sort"></img>
+                    </button>
+                    <QuestionDeleteAllButton />
+                </div>
+                <div className="app__question">
+
+                    {questions.length === 0 &&
+                        <p style={{ position: 'absolute', fontSize: '32px', top: '100%' }}>No Questions Available
+                          <Tooltip tip="Add questions on your own"/>
+                        </p>
+                    }
+                    {
+                        stableSort(questions, getSorting(order, orderBy)).map((item, i) => {
+                            return (
+                                <QuizHolder position={Number(i + 1)} id={item.uid} item={item} />
+                            )
+                        })
+                    }
+                </div>
+            </PerfectScrollbar>
+        </>
     )
 }
 

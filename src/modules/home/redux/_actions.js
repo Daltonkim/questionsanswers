@@ -25,9 +25,7 @@ function addQuestion(question) {
 
             questionairesService.addQuestion(question)
                 .then(
-                    (data) => {
-                        console.log(question)
-                        console.log(data)
+                    () => {
                         dispatch(success(question));
                     },
                     (error) => {
@@ -45,7 +43,6 @@ function addQuestion(question) {
 }
 
 function editQuestion(question) {
-    console.log(question)
     return (dispatch) => {
         dispatch(request({}));
 
@@ -56,9 +53,7 @@ function editQuestion(question) {
 
             questionairesService.addQuestion(question)
                 .then(
-                    (data) => {
-                        console.log(question)
-                        console.log(data)
+                    () => {
                         dispatch(success(question));
                     },
                     (error) => {
@@ -82,8 +77,7 @@ function getAllQuestions(questions) {
         try {
             questionairesService.getAllQuestions(questions)
                 .then(
-                    (data) => {
-                        console.log(data)
+                    () => {
                         dispatch(success(questions));
                     },
                     (error) => {
@@ -110,8 +104,7 @@ function deleteQuestion(id) {
             }
             questionairesService.deleteQuestion(id)
                 .then(
-                    (data) => {
-                        console.log(data)
+                    () => {
                         dispatch(success(id));
                     },
                     (error) => {
@@ -134,8 +127,7 @@ function deleteAllQuestions(questions) {
         try {
             questionairesService.deleteAllQuestions(questions)
                 .then(
-                    (data) => {
-                        console.log(data)
+                    () => {
                         dispatch(success(questions));
                     },
                     (error) => {

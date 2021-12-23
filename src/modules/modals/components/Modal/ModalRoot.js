@@ -55,7 +55,7 @@ const ModalRoot = ({ type, content, dispatch}) => {
                     bottom: 0,
                     padding: 0,
                     zIndex: 9999,
-                    backgroundImage: 'radial-gradient( circle at 50% 0px, rgba(241, 248, 255, 0.9), rgba(238, 244, 249, 0.9) )',
+                    backgroundImage: 'radial-gradient( circle at 50% 0px, rgba(241, 248, 255, 0.4), rgba(238, 244, 249, 0.4) )',
                 },
                 content: {
                     position: 'relative',

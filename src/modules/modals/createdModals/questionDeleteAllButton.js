@@ -1,9 +1,10 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { modalActions } from '..';
 
 
-export function QuestionDeleteAllButton({ questions }) {
+export function QuestionDeleteAllButton() {
     const dispatch = useDispatch();
+    const { questions } = useSelector((state) => state.questions);
 
     const deleteQuestions = () => {
         dispatch(modalActions.delete_all_questions(questions));

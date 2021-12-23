@@ -1,0 +1,15 @@
+h1{
+    color: #fff;
+    font-size: 35px;
+    @media (max-width: 1023px) {
+        font-size: 20px;
+    }
+}
+
+h2{
+    color: #800;
+    font-size: 32px;
+    @media (max-width: 1023px) {
+        font-size: 20px;
+    }
+}
