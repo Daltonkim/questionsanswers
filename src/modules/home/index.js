@@ -45,23 +45,23 @@ const Home = () => {
     //initial questions
     const intialQuestion = [
         {
-            question: 'How to add a question',
-            answer: 'By following the below',
+            question: 'What year was the very first model of the iPhone released?',
+            answer: '2007',
             uid: uuidv4() //unique identity
         },
         {
-            question: 'How to add a question',
-            answer: 'By following the below',
+            question: 'Which email service is owned by Microsoft?',
+            answer: 'Hotmail',
             uid: uuidv4() //unique identity
         },
         {
-            question: 'How to add a question',
-            answer: 'By following the below',
+            question: 'What is the name of the man who launched eBay back in 1995?',
+            answer: 'Pierre Omidyar',
             uid: uuidv4() //unique identity
         },
         {
-            question: 'How to add a question',
-            answer: 'By following the below',
+            question: 'What was Twitter’s original name?',
+            answer: 'twttr',
             uid: uuidv4() //unique identity
         }
     ]

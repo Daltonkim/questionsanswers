@@ -1,6 +1,9 @@
 # Getting Started with My Question and Answer Tool
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A live preview can be found in the link [Q&A Tool](https://boring-feynman-4a5255.netlify.app)
+
+![Preview](assets/screen.png)
 
 
 
