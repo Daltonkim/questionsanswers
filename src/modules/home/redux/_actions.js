@@ -120,15 +120,15 @@ function deleteQuestion(id) {
     function success(data) { return { type: questionairesConstants.QUESTION_DELETE_SUCCESS, data }; }
     function failure(error) { return { type: questionairesConstants.QUESTION_DELETE_FAILURE, error }; }
 }
-function deleteAllQuestions(questions) {
+function deleteAllQuestions() {
     return (dispatch) => {
         dispatch(request({}));
 
         try {
-            questionairesService.deleteAllQuestions(questions)
+            questionairesService.deleteAllQuestions()
                 .then(
                     () => {
-                        dispatch(success(questions));
+                        dispatch(success());
                     },
                     (error) => {
                         dispatch(failure(error));

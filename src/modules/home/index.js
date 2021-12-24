@@ -104,15 +104,16 @@ const Home = () => {
                 </div>
                 <div className="app__question">
 
-                    {questions.length === 0 &&
-                        <p style={{ position: 'absolute', fontSize: '32px', top: '100%' }}>No Questions Available
+                    {questions?.length === 0 &&
+                        <p style={{ position: 'absolute', fontSize: '32px', top: '100%' }}>
+                          No Questions Available
                           <Tooltip tip="Add questions on your own"/>
                         </p>
                     }
                     {
-                        stableSort(questions, getSorting(order, orderBy)).map((item, i) => {
+                       questions && stableSort(questions, getSorting(order, orderBy)).map((item, i) => {
                             return (
-                                <QuizHolder position={Number(i + 1)} id={item.uid} item={item} />
+                                <QuizHolder position={Number(i + 1)} key={i} id={item.uid} item={item} />
                             )
                         })
                     }

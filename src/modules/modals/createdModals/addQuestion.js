@@ -4,10 +4,10 @@ import { questionaireActions } from '../../home/redux/_actions';
 import { modalActions } from '../../modals';
 import { v4 as uuidv4 } from 'uuid';
 
-export const AddQuestion = ({ modalID, data }) => {
+export const AddQuestion = ({ modalID }) => {
 
-    const [question, setQuestion] = useState(data?.question)
-    const [answer, setAnswer] = useState(data?.answer)
+    const [question, setQuestion] = useState('')
+    const [answer, setAnswer] = useState('')
     const [, setDisabled] = useState(true)
 
     const dispatch = useDispatch();
@@ -18,7 +18,10 @@ export const AddQuestion = ({ modalID, data }) => {
         } else {
             setDisabled(true)
         }
-    }, [question, answer])
+        
+    }, [question, answer,])
+
+    
 
     //add questions
     const addQuestion = () => {
@@ -30,8 +33,6 @@ export const AddQuestion = ({ modalID, data }) => {
             }
             dispatch(questionaireActions.addQuestion(obj));
 
-            setAnswer('')
-            setQuestion('')
 
             closeModal();
 
@@ -45,15 +46,15 @@ export const AddQuestion = ({ modalID, data }) => {
 
     return (
         <div className="site-modal">
-            <h2>Add Question</h2>
+            <h2 data-testid='addq'>Add Question</h2>
             <div className="select-file p-10">
                 <form>
                     <label htmlFor="question">Question</label>
-                    <input required value={question} className="app__question-qtext" onChange={(e) => setQuestion(e.target.value)} type="text" name="question"></input>
+                    <input required  data-testid="question" value={question} className="app__question-qtext" onChange={(e) => setQuestion(e.target.value)} type="text" name="question"></input>
                     <label htmlFor="answer">Answer</label>
-                    <textarea required value={answer} name="answer" rows="6" onChange={(e) => setAnswer(e.target.value)} className="app__question-qtextarea"></textarea>
+                    <textarea data-testid="answer" required value={answer} name="answer" rows="6" onChange={(e) => setAnswer(e.target.value)} className="app__question-qtextarea"></textarea>
                     <div className="btn-group-actions site-modal__actions">
-                        <button  type='submit' className="app__question-actions-create" onClick={() => addQuestion()} >Add Question</button>
+                        <button  type='submit'  data-testid="submit-button" className="app__question-actions-create" onClick={() => addQuestion()} >Add Question</button>
                         <button  className="danger" onClick={() => closeModal()}>Close</button>
                     </div>
                 </form>

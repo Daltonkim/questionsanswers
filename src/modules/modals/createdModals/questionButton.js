@@ -11,7 +11,7 @@ export function DeleteQuestionButton({ id }) {
     };
 
     return (
-        <button className='app__deletebutton' onClick={() => deleteQuestionnaire()}>
+        <button data-testid="buttondelete" className='app__deletebutton' onClick={() => deleteQuestionnaire()}>
             <img src={remove} alt="delete new question"></img>
         </button>
     );

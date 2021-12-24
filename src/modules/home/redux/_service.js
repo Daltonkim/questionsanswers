@@ -60,15 +60,11 @@ function deleteQuestion(id) {
     });
 }
 
-function deleteAllQuestions(questions) {
+function deleteAllQuestions() {
     return new Promise((resolve, reject) => {
         setTimeout(function () {
-            if (questions) {
                 resolve();
-                return questions;
-            } else {
                 reject(new Error("Invalid"));
-            }
         }, delay);
     });
 }

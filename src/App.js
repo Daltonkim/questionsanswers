@@ -5,7 +5,7 @@ import Home from './modules/home';
 import { ModalRoot } from './modules/modals';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import Header from './components/header';
-import { AddButton } from './modules/modals/createdModals/addButton';
+import AddButton from './modules/modals/createdModals/addButton';
 import Tooltip from './components/tooltip';
 
 function App() {

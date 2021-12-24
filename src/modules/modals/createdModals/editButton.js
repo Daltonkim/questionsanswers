@@ -10,8 +10,8 @@ export function EditButton({ item }) {
     };
 
     return (
-        <button className='app__editbutton' onClick={() => editQuestion()}>
-           <img src={edit} alt="add new question"></img>
+        <button data-testid="buttondelete" className='app__editbutton' onClick={() => editQuestion()}>
+            <img src={edit} alt="edit question"></img>
         </button>
     );
 }
