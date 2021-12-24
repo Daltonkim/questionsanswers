@@ -10,7 +10,7 @@ export const questionaireActions = {
     deleteQuestion,
     deleteAllQuestions,
 };
-
+//add question
 function addQuestion(question) {
     return (dispatch) => {
         dispatch(request({}));
@@ -40,6 +40,8 @@ function addQuestion(question) {
     function success(data) { return { type: questionairesConstants.QUESTION_SUBMIT_SUCCESS, data }; }
     function failure(error) { return { type: questionairesConstants.QUESTION_SUBMIT_FAILURE, error }; }
 }
+
+//edit question
 
 function editQuestion(question) {
     return (dispatch) => {
@@ -72,6 +74,8 @@ function editQuestion(question) {
     function failure(error) { return { type: questionairesConstants.QUESTION_EDIT_FAILURE, error }; }
 }
 
+//get all question
+
 function getAllQuestions(questions) {
     return (dispatch) => {
         dispatch(request({}));
@@ -96,6 +100,7 @@ function getAllQuestions(questions) {
     function failure(error) { return { type: questionairesConstants.QUESTION_GETALL_FAILURE, error }; }
 }
 
+//delete one question
 function deleteQuestion(id) {
     return (dispatch) => {
         dispatch(request({}));
@@ -123,6 +128,9 @@ function deleteQuestion(id) {
     function success(data) { return { type: questionairesConstants.QUESTION_DELETE_SUCCESS, data }; }
     function failure(error) { return { type: questionairesConstants.QUESTION_DELETE_FAILURE, error }; }
 }
+
+//delete all questions
+
 function deleteAllQuestions() {
     return (dispatch) => {
         dispatch(request({}));

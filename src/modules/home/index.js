@@ -82,7 +82,7 @@ const Home = () => {
         setOrderBy(property);
     };
 
-
+    //get initial questions
     useEffect(() => {
         dispatch(questionaireActions.getAllQuestions(intialQuestion));
     }, [])
@@ -106,12 +106,12 @@ const Home = () => {
 
                     {questions?.length === 0 &&
                         <p style={{ position: 'absolute', fontSize: '32px', top: '100%' }}>
-                          No Questions Available
-                          <Tooltip tip="Add questions on your own"/>
+                            No Questions Available
+                            <Tooltip tip="Add questions on your own" />
                         </p>
                     }
                     {
-                       questions && stableSort(questions, getSorting(order, orderBy)).map((item, i) => {
+                        questions && stableSort(questions, getSorting(order, orderBy)).map((item, i) => {
                             return (
                                 <QuizHolder position={Number(i + 1)} key={i} id={item.uid} item={item} />
                             )

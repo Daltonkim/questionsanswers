@@ -25,17 +25,14 @@ export const AddQuestion = ({ modalID }) => {
 
     //add questions
     const addQuestion = () => {
-        if ((answer !== undefined) && (question !== undefined)) {
+        if ((answer !== '') && (question !== '')) {
             const obj = {
                 question: question,
                 answer: answer,
                 uid: uuidv4()
             }
             dispatch(questionaireActions.addQuestion(obj));
-
-
             closeModal();
-
         }
     }
 
@@ -48,13 +45,13 @@ export const AddQuestion = ({ modalID }) => {
         <div className="site-modal">
             <h2 data-testid='addq'>Add Question</h2>
             <div className="select-file p-10">
-                <form>
+                <form onSubmit={() => addQuestion()}>
                     <label htmlFor="question">Question</label>
                     <input required  data-testid="question" value={question} className="app__question-qtext" onChange={(e) => setQuestion(e.target.value)} type="text" name="question"></input>
                     <label htmlFor="answer">Answer</label>
                     <textarea data-testid="answer" required value={answer} name="answer" rows="6" onChange={(e) => setAnswer(e.target.value)} className="app__question-qtextarea"></textarea>
                     <div className="btn-group-actions site-modal__actions">
-                        <button  type='submit'  data-testid="submit-button" className="app__question-actions-create" onClick={() => addQuestion()} >Add Question</button>
+                        <button  type='submit'  data-testid="submit-button" className="app__question-actions-create" >Add Question</button>
                         <button  className="danger" onClick={() => closeModal()}>Close</button>
                     </div>
                 </form>

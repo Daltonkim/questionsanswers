@@ -28,6 +28,7 @@ export const questions = (state = initialState, action) => {
                 loading: true,
             }
         case questionairesConstants.QUESTION_EDIT_SUCCESS:
+            //update payload
             const updatePayload = state.questions.map(item => {
                 if (action.data.uid === item.uid) {
                     item.question = action.data.question;
@@ -70,6 +71,7 @@ export const questions = (state = initialState, action) => {
             }
 
         case questionairesConstants.QUESTION_DELETE_SUCCESS:
+            //remove item
             const removeItem = state.questions.filter(item => item.uid !== action.data)
             return {
                 ...state,
