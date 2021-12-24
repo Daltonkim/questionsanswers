@@ -1,4 +1,5 @@
 import { isEmpty } from 'lodash';
+import { toast } from 'react-toastify'
 import { questionairesConstants } from './_constants';
 import { questionairesService } from './_service';
 
@@ -15,9 +16,6 @@ function addQuestion(question) {
         dispatch(request({}));
 
         try {
-            // if (isEmpty(id)) {
-            //     throw new Error('Application ID cannot be empty');
-            // }
 
             if (isEmpty(question)) {
                 throw new Error('Comment cannot be empty');
@@ -27,6 +25,7 @@ function addQuestion(question) {
                 .then(
                     () => {
                         dispatch(success(question));
+                        toast.success('Question has been added successfull')
                     },
                     (error) => {
                         dispatch(failure(error));
@@ -54,10 +53,13 @@ function editQuestion(question) {
             questionairesService.addQuestion(question)
                 .then(
                     () => {
+                        toast.success('Question has been edited successfull')
                         dispatch(success(question));
                     },
                     (error) => {
                         dispatch(failure(error));
+                        toast.error('error')
+
                     },
                 );
         } catch (error) {
@@ -99,13 +101,14 @@ function deleteQuestion(id) {
         dispatch(request({}));
 
         try {
-             if (isEmpty(id)) {
+            if (isEmpty(id)) {
                 throw new Error('Question ID cannot be empty');
             }
             questionairesService.deleteQuestion(id)
                 .then(
                     () => {
                         dispatch(success(id));
+                        toast.success('Question deleted successfull')
                     },
                     (error) => {
                         dispatch(failure(error));
@@ -129,6 +132,8 @@ function deleteAllQuestions() {
                 .then(
                     () => {
                         dispatch(success());
+                        toast.success('All Questions have been deleted successfull')
+
                     },
                     (error) => {
                         dispatch(failure(error));
