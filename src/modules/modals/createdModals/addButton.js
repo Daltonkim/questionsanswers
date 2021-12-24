@@ -1,7 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { modalActions } from '..';
 import addsign from '../../../assets/images/plus.png'
-export function AddButton() {
+
+const AddButton = () => {
     const dispatch = useDispatch();
 
     const addQuestion = () => {
@@ -10,7 +11,9 @@ export function AddButton() {
 
     return (
         <button className='app__addbutton' onClick={() => addQuestion()}>
-           <img src={addsign} alt="add new question"></img>
+            <img src={addsign} alt="add new question"></img>
         </button>
     );
 }
+
+export default AddButton

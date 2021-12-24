@@ -45,23 +45,23 @@ const Home = () => {
     //initial questions
     const intialQuestion = [
         {
-            question: 'How to add a question',
-            answer: 'By following the below',
+            question: 'What year was the very first model of the iPhone released?',
+            answer: '2007',
             uid: uuidv4() //unique identity
         },
         {
-            question: 'How to add a question',
-            answer: 'By following the below',
+            question: 'Which email service is owned by Microsoft?',
+            answer: 'Hotmail',
             uid: uuidv4() //unique identity
         },
         {
-            question: 'How to add a question',
-            answer: 'By following the below',
+            question: 'What is the name of the man who launched eBay back in 1995?',
+            answer: 'Pierre Omidyar',
             uid: uuidv4() //unique identity
         },
         {
-            question: 'How to add a question',
-            answer: 'By following the below',
+            question: 'What was Twitter’s original name?',
+            answer: 'twttr',
             uid: uuidv4() //unique identity
         }
     ]
@@ -82,7 +82,7 @@ const Home = () => {
         setOrderBy(property);
     };
 
-
+    //get initial questions
     useEffect(() => {
         dispatch(questionaireActions.getAllQuestions(intialQuestion));
     }, [])
@@ -104,15 +104,16 @@ const Home = () => {
                 </div>
                 <div className="app__question">
 
-                    {questions.length === 0 &&
-                        <p style={{ position: 'absolute', fontSize: '32px', top: '100%' }}>No Questions Available
-                          <Tooltip tip="Add questions on your own"/>
+                    {questions?.length === 0 &&
+                        <p style={{ position: 'absolute', fontSize: '32px', top: '100%' }}>
+                            No Questions Available
+                            <Tooltip tip="Add questions on your own" />
                         </p>
                     }
                     {
-                        stableSort(questions, getSorting(order, orderBy)).map((item, i) => {
+                        questions && stableSort(questions, getSorting(order, orderBy)).map((item, i) => {
                             return (
-                                <QuizHolder position={Number(i + 1)} id={item.uid} item={item} />
+                                <QuizHolder position={Number(i + 1)} key={i} id={item.uid} item={item} />
                             )
                         })
                     }

@@ -44,6 +44,7 @@ const ModalRoot = ({ type, content, dispatch}) => {
         <Modal
             isOpen={modalIsOpen}
             onRequestClose={closeModal}
+            data-testId='modal'
             contentLabel="Example Modal"
             ariaHideApp={false}
             style={{

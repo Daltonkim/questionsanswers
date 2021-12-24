@@ -1,15 +1,31 @@
-h1{
+h1 {
     color: #fff;
+    font-family: 'Montserrat';
     font-size: 35px;
+
     @media (max-width: 1023px) {
         font-size: 20px;
     }
 }
 
-h2{
+h2 {
     color: #800;
+    font-family: 'Montserrat';
     font-size: 32px;
+
     @media (max-width: 1023px) {
         font-size: 20px;
     }
+}
+
+h3 {
+    font-family: 'Montserrat';
+    font-size: 32px;
+
+    @media (max-width: 1023px) {
+        font-size: 20px;
+    }
+}
+p {
+    font-family: 'Work Sans';
 }
