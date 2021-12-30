@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { questionaireActions } from '../../home/redux/_actions';
 import { modalActions } from '../../modals';
 import { v4 as uuidv4 } from 'uuid';
+import Tooltip from '../../../components/tooltip';
 
 export const AddQuestion = ({ modalID }) => {
 
@@ -56,7 +57,7 @@ export const AddQuestion = ({ modalID }) => {
                     <textarea data-testid="answer" required value={answer} name="answer" rows="6" onChange={(e) => setAnswer(e.target.value)} className="app__question-qtextarea"></textarea>
                     <label htmlFor='hasDelay' className="checkbox">
                         <input type="checkbox" value={hasDelay} name="hasDelay" className="app__question-delay" onChange={(e) => handleCheckChange(e.target.value)}></input>
-                        <span>Add a 5 second delay</span>
+                        <span>Add a 5 second delay <Tooltip tip="This will add a five second delay to the operation" /></span>
                     </label>
                     <div className="btn-group-actions site-modal__actions">
                         <button type='submit' data-testid="submit-button" className="app__question-actions-create" >Add Question</button>
