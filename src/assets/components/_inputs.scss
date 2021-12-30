@@ -1,4 +1,12 @@
-
 label {
-    margin: 10px 0;
+    margin: 10px auto;
+    position: relative;
+
+    >span {
+        margin: 0 10px;
+    }
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
 }
