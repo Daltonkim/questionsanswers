@@ -6,9 +6,11 @@ export const questionairesService = {
     getAllQuestions,
     deleteAllQuestions
 };
-const delay = (0.5 + Math.random() * 2) * 1000;
+const delay = 5000;
 
 function addQuestion(question) {
+    const { hasDelay } = question
+
     return new Promise((resolve, reject) => {
         setTimeout(function () {
             if (question) {
@@ -17,7 +19,7 @@ function addQuestion(question) {
             } else {
                 reject(new Error("Invalid"));
             }
-        }, delay);
+        }, (hasDelay ? delay : 0));
     });
 }
 
@@ -34,7 +36,10 @@ function getAllQuestions(questions) {
     });
 }
 
-function editQuestion(question, i) {
+function editQuestion(question) {
+
+    const { hasDelay } = question
+
     return new Promise((resolve, reject) => {
         setTimeout(function () {
             if (question) {
@@ -43,7 +48,7 @@ function editQuestion(question, i) {
             } else {
                 reject(new Error("Invalid"));
             }
-        }, delay);
+        }, (hasDelay ? delay : 0));
     });
 }
 

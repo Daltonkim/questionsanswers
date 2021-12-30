@@ -33,6 +33,7 @@ export const questions = (state = initialState, action) => {
                 if (action.data.uid === item.uid) {
                     item.question = action.data.question;
                     item.answer = action.data.answer;
+                    item.hasDelay = action.data.hasDelay;
                 }
                 return item
             })

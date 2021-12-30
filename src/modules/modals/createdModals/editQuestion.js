@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import Tooltip from '../../../components/tooltip';
 import { questionaireActions } from '../../home/redux/_actions';
 import { modalActions } from '../../modals';
 
@@ -8,6 +9,7 @@ export const EditQuestion = ({ modalID, data }) => {
 
     const [question, setQuestion] = useState()
     const [answer, setAnswer] = useState()
+    const [hasDelay, setDelay] = useState(false)
     const [, setDisabled] = useState(true)
 
     const dispatch = useDispatch();
@@ -22,17 +24,25 @@ export const EditQuestion = ({ modalID, data }) => {
 
     useEffect(() => {
         if ((data !== undefined)) {
-            const { answer, question } = data
+            const { answer, question, hasDelay } = data
             setAnswer(answer)
             setQuestion(question)
+            setDelay(hasDelay)
         }
     }, [data])
+
+
+    const handleCheckChange = () => {
+        setDelay(!hasDelay)
+    }
+
 
     const editQuestion = () => {
         if ((answer !== undefined) && (question !== undefined)) {
             const obj = {
                 question: question,
                 answer: answer,
+                hasDelay: hasDelay,
                 uid: data !== undefined ? data.uid : 'random'
             }
             dispatch(questionaireActions.editQuestion(obj));
@@ -56,7 +66,10 @@ export const EditQuestion = ({ modalID, data }) => {
                     <input required data-testid="question" value={question} className="app__question-qtext" onChange={(e) => setQuestion(e.target.value)} type="text" name="question"></input>
                     <label htmlFor="answer">Answer</label>
                     <textarea required data-testid="answer" value={answer} name="answer" rows="10" onChange={(e) => setAnswer(e.target.value)} className="app__question-qtextarea"></textarea>
-
+                    <label htmlFor='hasDelay' className="checkbox">
+                        <input type="checkbox" value={hasDelay} checked={hasDelay} name="hasDelay" className="app__question-delay" onChange={(e) => handleCheckChange(e.target.value)}></input>
+                        <span>Add a 5 second delay <Tooltip tip="This will add a five second delay to the operation" /></span>
+                    </label>
                     <div className="btn-group-actions site-modal__actions">
                         <button type='submit' name="submit" data-testid="submit-button" className="app__question-actions-create">Save changes</button>
                         <button className="danger" onClick={() => closeModal()}>Close</button>

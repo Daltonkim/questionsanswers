@@ -37,7 +37,7 @@ function getSorting(order, orderBy) {
 
 const perfectScrollbarOptions = {
     wheelSpeed: 2,
-    wheelPropagation: false,
+    wheelPropagation: true,
 };
 
 const Home = () => {
@@ -47,22 +47,26 @@ const Home = () => {
         {
             question: 'What year was the very first model of the iPhone released?',
             answer: '2007',
-            uid: uuidv4() //unique identity
+            uid: uuidv4(), //unique identity
+            hasDelay: false,
         },
         {
             question: 'Which email service is owned by Microsoft?',
             answer: 'Hotmail',
-            uid: uuidv4() //unique identity
+            uid: uuidv4(), //unique identity
+            hasDelay: false,
         },
         {
             question: 'What is the name of the man who launched eBay back in 1995?',
             answer: 'Pierre Omidyar',
-            uid: uuidv4() //unique identity
+            uid: uuidv4(), //unique identity
+            hasDelay: false,
         },
         {
             question: 'What was Twitter’s original name?',
             answer: 'twttr',
-            uid: uuidv4() //unique identity
+            uid: uuidv4(), //unique identity
+            hasDelay: false,
         }
     ]
     const [order, setOrder] = useState("");
