@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
 
@@ -8,12 +8,12 @@ import { modalActions } from '../../_actions';
 import { DeleteQuestion } from '../../createdModals/deleteQuestion';
 import { DeleteAllQuestions } from '../../createdModals/deleteAllQuestion';
 import './ModalRoot.scss';
-import { EditQuestion } from '../../createdModals/editQuestion';
+import { MemoizedEditQuestion } from '../../createdModals/editQuestion';
 import { AddQuestion } from '../../createdModals/addQuestion';
 
 const MODAL_COMPONENTS = {
     ADD_QUESTION:AddQuestion,
-    EDIT_QUESTION: EditQuestion,
+    EDIT_QUESTION: MemoizedEditQuestion,
     DELETE_ALL_QUESTIONS: DeleteAllQuestions,
     DELETE_QUESTION: DeleteQuestion,
 
@@ -76,6 +76,7 @@ const ModalRoot = ({ type, content, dispatch}) => {
                 },
             }}
         >
+            {console.count('counter')}
             { SpecificModal && <SpecificModal modalID={1} type={type} data={content} /> }
         </Modal>
     );
@@ -86,5 +87,5 @@ const mapStateToProps = (state) => {
     return (modals);
 };
 
-const connectedModalRoot = connect(mapStateToProps)(ModalRoot);
+const connectedModalRoot = memo(connect(mapStateToProps)(ModalRoot));
 export { connectedModalRoot as ModalRoot };

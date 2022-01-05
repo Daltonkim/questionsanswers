@@ -52,7 +52,7 @@ function editQuestion(question) {
                 throw new Error('Question cannot be empty');
             }
 
-            questionairesService.addQuestion(question)
+            questionairesService.editQuestion(question)
                 .then(
                     () => {
                         toast.success('Question has been edited successfull')

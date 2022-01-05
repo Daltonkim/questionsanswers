@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import './assets/fonts/stylesheet.css';
 import App from './App';
+import './wdyr'; // <--- first import
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(

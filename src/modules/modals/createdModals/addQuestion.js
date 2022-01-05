@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { questionaireActions } from '../../home/redux/_actions';
 import { modalActions } from '../../modals';
 import { v4 as uuidv4 } from 'uuid';
 import Tooltip from '../../../components/tooltip';
 
-export const AddQuestion = ({ modalID }) => {
+export function AddQuestion ({ modalID }) {
 
     const [question, setQuestion] = useState('')
     const [answer, setAnswer] = useState('')
@@ -49,6 +49,8 @@ export const AddQuestion = ({ modalID }) => {
     return (
         <div className="site-modal">
             <h2 data-testid='addq'>Add Question</h2>
+            {console.count('counter')}
+
             <div className="select-file p-10">
                 <form onSubmit={() => addQuestion()}>
                     <label htmlFor="question">Question</label>
@@ -67,4 +69,6 @@ export const AddQuestion = ({ modalID }) => {
             </div>
         </div>
     );
-};
+}
+
+export const MemoizedAddQuestion = memo(AddQuestion)

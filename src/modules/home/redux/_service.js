@@ -41,7 +41,7 @@ function editQuestion(question) {
     const { hasDelay } = question
 
     return new Promise((resolve, reject) => {
-        setTimeout(function () {
+        setTimeout(() => {
             if (question) {
                 resolve();
                 return question;

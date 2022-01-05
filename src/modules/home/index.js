@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import QuizHolder from "../../components/quizholder";
+import QuizHolder, { MemoizedQuizHolder } from "../../components/quizholder";
 import { questionaireActions } from "./redux/_actions";
 import { v4 as uuidv4 } from 'uuid';
 import { LoadingView } from "../../components/loader/Loading";
@@ -91,7 +91,7 @@ const Home = () => {
         dispatch(questionaireActions.getAllQuestions(intialQuestion));
     }, [])
 
-    return (
+    return useMemo(() => (
         <>
             {loading && <LoadingView />}
 
@@ -106,7 +106,7 @@ const Home = () => {
                     </button>
                     <QuestionDeleteAllButton />
                 </div>
-                <div className="app__question">
+                <ul className="app__question">
 
                     {questions?.length === 0 &&
                         <p style={{ position: 'absolute', fontSize: '32px', top: '100%' }}>
@@ -117,14 +117,14 @@ const Home = () => {
                     {
                         questions && stableSort(questions, getSorting(order, orderBy)).map((item, i) => {
                             return (
-                                <QuizHolder position={Number(i + 1)} key={i} id={item.uid} item={item} />
+                                <MemoizedQuizHolder position={Number(i + 1)} id={item.uid} key ={item.uid} item={item} />
                             )
                         })
                     }
-                </div>
+                </ul>
             </PerfectScrollbar>
         </>
-    )
+    ),[createSortHandler, loading, order, orderBy, questions]);
 }
 
 export default Home;

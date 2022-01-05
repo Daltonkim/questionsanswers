@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useDispatch } from 'react-redux';
 import { modalActions } from '..';
 import edit from '../../../assets/images/edit.png'
@@ -15,3 +16,5 @@ export function EditButton({ item }) {
         </button>
     );
 }
+
+export const MemoizedEditButton = memo(EditButton)

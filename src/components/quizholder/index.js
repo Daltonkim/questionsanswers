@@ -1,11 +1,12 @@
-import { EditButton } from "../../modules/modals/createdModals/editButton"
+import { memo } from "react"
+import { MemoizedEditButton } from "../../modules/modals/createdModals/editButton"
 import { DeleteQuestionButton } from "../../modules/modals/createdModals/questionButton"
 
-const QuizHolder = ({ position, item, id }) => {
+export const QuizHolder = ({ position, item, id }) => {
     const { question, answer } = item
     return (
-        <>
             <div className="flip">
+                        {console.count('counter')}
                 <div className="front">
                     <h3>Question {Number(position)}</h3>
                     <p className="app__question-text">{question}</p>
@@ -15,12 +16,11 @@ const QuizHolder = ({ position, item, id }) => {
                     <p className="app__question-answer">{answer}</p>
                 </div>
                 <div className="app__question-inlineactions">
-                    <EditButton item={item} />
+                    <MemoizedEditButton item={item} />
                     <DeleteQuestionButton id={id} />
                 </div>
             </div>
-        </>
     )
 }
 
-export default QuizHolder;
+export const MemoizedQuizHolder = memo(QuizHolder);

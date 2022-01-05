@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useMemo, useState } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import Tooltip from '../../../components/tooltip';
 import { questionaireActions } from '../../home/redux/_actions';
 import { modalActions } from '../../modals';
+ 
+const EditQuestion = ({ modalID, data }) => {
 
-export const EditQuestion = ({ modalID, data }) => {
-
-
-    const [question, setQuestion] = useState()
-    const [answer, setAnswer] = useState()
+    const [question, setQuestion] = useState('')
+    const [answer, setAnswer] = useState('')
     const [hasDelay, setDelay] = useState(false)
     const [, setDisabled] = useState(true)
 
@@ -57,10 +57,11 @@ export const EditQuestion = ({ modalID, data }) => {
         dispatch(modalActions.hideModal(modalID));
     };
 
-    return (
+    return useMemo(() => (
         <div className="site-modal">
             <h2 data-testid="editq">Edit Question</h2>
             <div className="select-file p-10">
+                {console.count('counter')}
                 <form onSubmit={() => editQuestion()} data-testid='form'>
                     <label htmlFor="question">Question</label>
                     <input required data-testid="question" value={question} className="app__question-qtext" onChange={(e) => setQuestion(e.target.value)} type="text" name="question"></input>
@@ -77,5 +78,12 @@ export const EditQuestion = ({ modalID, data }) => {
                 </form>
             </div>
         </div>
-    );
+    ), [question, answer, hasDelay, handleCheckChange, closeModal]);
 };
+
+EditQuestion.propTypes = {
+    modalID: PropTypes.number,
+    data: PropTypes.object
+};
+
+export const MemoizedEditQuestion = memo(EditQuestion)
