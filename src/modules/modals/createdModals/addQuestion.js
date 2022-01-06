@@ -4,8 +4,9 @@ import { questionaireActions } from '../../home/redux/_actions';
 import { modalActions } from '../../modals';
 import { v4 as uuidv4 } from 'uuid';
 import Tooltip from '../../../components/tooltip';
+import { questionSchema } from '../../../validations/questionsValidation'
 
-export function AddQuestion ({ modalID }) {
+export function AddQuestion({ modalID }) {
 
     const [question, setQuestion] = useState('')
     const [answer, setAnswer] = useState('')
@@ -28,14 +29,19 @@ export function AddQuestion ({ modalID }) {
     }
 
     //add questions
-    const addQuestion = () => {
-        if ((answer !== '') && (question !== '')) {
-            const obj = {
-                question: question,
-                answer: answer,
-                hasDelay: hasDelay,
-                uid: uuidv4()
-            }
+    const addQuestion = async (e) => {
+        e.preventDefault()
+        console.log(e)
+        const obj = {
+            question: question,
+            answer: answer,
+            hasDelay: hasDelay,
+            uid: uuidv4()
+        }
+
+        const isValid = await questionSchema.isValid(obj)
+        console.log(isValid)
+        if (isValid) {
             dispatch(questionaireActions.addQuestion(obj));
             closeModal();
         }
@@ -52,11 +58,13 @@ export function AddQuestion ({ modalID }) {
             {console.count('counter')}
 
             <div className="select-file p-10">
-                <form onSubmit={() => addQuestion()}>
-                    <label htmlFor="question">Question</label>
-                    <input required data-testid="question" value={question} className="app__question-qtext" onChange={(e) => setQuestion(e.target.value)} type="text" name="question"></input>
-                    <label htmlFor="answer">Answer</label>
-                    <textarea data-testid="answer" required value={answer} name="answer" rows="6" onChange={(e) => setAnswer(e.target.value)} className="app__question-qtextarea"></textarea>
+                <form onSubmit={addQuestion}>
+                    <label htmlFor="question">Question
+                        <input data-testid="question" value={question} className="app__question-qtext" onChange={(e) => setQuestion(e.target.value)} type="text" name="question"></input>
+                    </label>
+                    <label htmlFor="answer">Answer
+                        <textarea data-testid="answer" value={answer} name="answer" rows="6" onChange={(e) => setAnswer(e.target.value)} className="app__question-qtextarea"></textarea>
+                    </label>
                     <label htmlFor='hasDelay' className="checkbox">
                         <input type="checkbox" value={hasDelay} name="hasDelay" className="app__question-delay" onChange={(e) => handleCheckChange(e.target.value)}></input>
                         <span>Add a 5 second delay <Tooltip tip="This will add a five second delay to the operation" /></span>

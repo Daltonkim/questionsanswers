@@ -23,8 +23,9 @@ function addQuestion(question) {
 
             questionairesService.addQuestion(question)
                 .then(
-                    () => {
-                        dispatch(success(question));
+                    (res) => {
+                        console.log(res)
+                        dispatch(success(res));
                         toast.success('Question has been added successfull')
                     },
                     (error) => {

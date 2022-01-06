@@ -14,13 +14,14 @@ function addQuestion(question) {
     return new Promise((resolve, reject) => {
         setTimeout(function () {
             if (question) {
-                resolve();
-                return question;
+                console.log(question)
+                resolve(question);
             } else {
                 reject(new Error("Invalid"));
             }
         }, (hasDelay ? delay : 0));
     });
+    
 }
 
 function getAllQuestions(questions) {
